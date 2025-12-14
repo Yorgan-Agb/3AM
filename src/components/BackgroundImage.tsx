@@ -1,7 +1,15 @@
-export const BackgroundImage = () => {
+interface BackgroundImageProps {
+  imagePath: string;
+}
+
+export const BackgroundImage = ({ imagePath }: BackgroundImageProps) => {
   return (
-    <div className="imgContainer">
-      <section className="bg-[url('/lofi-1.jpg')] h-screen bg-no-repeat"></section>
+    <div className="fixed w-full h-screen -z-10">
+      <img
+        className="w-full h-full object-cover brightness-50"
+        src={imagePath}
+        alt="Image lofi"
+      />
     </div>
   );
 };
