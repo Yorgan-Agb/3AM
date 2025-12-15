@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BackgroundImage } from "./components/BackgroundImage";
+import { Header } from "./components/Header";
 import "./reset.css";
 
 export const App = () => {
@@ -18,6 +19,7 @@ export const App = () => {
   return (
     <div>
       <BackgroundImage imagePath={imagePath} />
+      <Header />
     </div>
   );
 };
