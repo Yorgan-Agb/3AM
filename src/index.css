@@ -3,6 +3,10 @@
 
 @theme {
   --font-lofi: "BBH Bartle", sans-serif;
+
+  --color-primary: oklch(0.7 0.2 270);
+  --color-muted: oklch(0.3 0.02 270);
+  --color-ring: oklch(0.7 0.2 270);
 }
 
 body {

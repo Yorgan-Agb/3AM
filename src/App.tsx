@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { BackgroundImage } from "./components/BackgroundImage";
 import { Header } from "./components/Header";
 import "./reset.css";
+import { MusicPlayer } from "./components/MusicPlayer";
 
 export const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 7);
-    }, 5000);
+    }, 30 * 60 * 1000);
     return () => {
       clearInterval(intervalId);
     };
@@ -20,6 +21,7 @@ export const App = () => {
     <div>
       <BackgroundImage imagePath={imagePath} />
       <Header />
+      <MusicPlayer />
     </div>
   );
 };
