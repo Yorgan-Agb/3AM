@@ -8,7 +8,7 @@ export const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 8);
+      setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 7);
     }, 30 * 60 * 1000);
     return () => {
       clearInterval(intervalId);

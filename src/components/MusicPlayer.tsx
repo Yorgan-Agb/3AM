@@ -5,6 +5,7 @@ import { useRef } from "react";
 
 export const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number[]>([0]);
   const [stationName, setStationName] = useState<string>("");
   const [stationUrl, setStationuRL] = useState<string>("");
 
@@ -12,11 +13,16 @@ export const MusicPlayer = () => {
 
   const handlePlayingClick = () => {
     if (isPlaying) {
-      audioRef.current.pause();
+      audioRef.current!.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current!.play();
     }
     setIsPlaying(!isPlaying);
+  };
+
+  const handleValueChange = (newValue: number[]) => {
+    setVolume(newValue);
+    audioRef.current!.volume = newValue[0] / 100;
   };
 
   useEffect(() => {
@@ -42,7 +48,13 @@ export const MusicPlayer = () => {
       ) : (
         <>
           <button>
-            <Slider defaultValue={[30]} max={100} step={1} />
+            <Slider
+              defaultValue={[30]}
+              max={100}
+              step={1}
+              value={volume}
+              onValueChange={handleValueChange}
+            />
           </button>
 
           {!isPlaying ? (
@@ -56,7 +68,7 @@ export const MusicPlayer = () => {
           )}
 
           <div>
-            <audio ref={audioRef} src={stationUrl}></audio>
+            <audio ref={audioRef} src={stationUrl} autoPlay></audio>
           </div>
         </>
       )}
