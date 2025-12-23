@@ -8,13 +8,13 @@ export const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 7);
+      setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 8);
     }, 30 * 60 * 1000);
     return () => {
       clearInterval(intervalId);
     };
   }, []);
-
+  // 30 * 60 * 1000
   const imagePath = `/lofi-${currentImageIndex + 1}.jpg`;
 
   return (
