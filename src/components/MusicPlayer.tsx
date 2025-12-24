@@ -38,7 +38,9 @@ export const MusicPlayer = () => {
           throw new Error("Erreur lors du chargement de la station");
         }
         const data = await httpResponse.json();
-
+        if (!data || data.length === 0) {
+          throw new Error("Aucune station disponible");
+        }
         const firstStation = data[2];
         const name = firstStation.name;
         const stationUrl = firstStation.url_resolved;
@@ -47,7 +49,11 @@ export const MusicPlayer = () => {
         setLoading(false);
       } catch (error) {
         if (error instanceof Error) {
-          setMessage(error.message);
+          if (error.message === "Failed to fetch") {
+            setMessage(
+              "Impossible de se connecter à la radio, rechargez la page"
+            );
+          }
         } else {
           setMessage("Une erreur est survenue");
         }
@@ -60,23 +66,25 @@ export const MusicPlayer = () => {
   return (
     <section className="fixed bottom-20 z-10 w-full flex flex-row-reverse p-4 gap-4">
       {loading ? (
-        <p className="text-2xl text-gray-700/40 font-bold font-lofi hover:text-yellow-200/40">
-          Chargement de la station 🎶
+        <p className="text-2xl text-gray-700  font-lofi hover:text-yellow-200/40">
+          Chargement de la station
         </p>
       ) : message !== "" ? (
         <section>
-          <p>{message}</p>
+          <p className="text-xl text-gray-200/80 font-bold font-lofi hover:text-yellow-200/40">
+            {message}
+          </p>
         </section>
       ) : (
         <div className="flex flex-col items-center">
           <div className="flex flex-row justify-center items-center">
             {!isPlaying ? (
               <button onClick={handlePlayingClick}>
-                <LuPlay className="text-gray-700/40 hover:text-yellow-200/40 text-4xl" />
+                <LuPlay className="text-gray-700/40 hover:text-green-100/70 text-4xl" />
               </button>
             ) : (
               <button onClick={handlePlayingClick}>
-                <LuPause className="text-gray-700/40 hover:text-yellow-200/40 text-4xl" />
+                <LuPause className="text-gray-700/40 hover:text-green-100/70 text-4xl" />
               </button>
             )}
             <button>
