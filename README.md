@@ -1,4 +1,4 @@
-# 3AM.FM 🎵
+# 3AM.FM 🦉
 
 Lecteur de radio lofi minimaliste avec transitions d'images/GIFs atmosphériques.
 
