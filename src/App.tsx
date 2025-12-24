@@ -9,7 +9,7 @@ export const App = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex(() => Math.floor(Math.random() * 10));
-    }, 30 * 60 * 1000);
+    }, 20 * 60 * 1000);
     return () => {
       clearInterval(intervalId);
     };
