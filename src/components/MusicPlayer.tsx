@@ -8,7 +8,7 @@ export const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number[]>([0]);
   const [stationName, setStationName] = useState<string>("");
-  const [stationUrl, setStationuRL] = useState<string>("");
+  const [stationUrl, setStationUrl] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -45,7 +45,7 @@ export const MusicPlayer = () => {
         const name = firstStation.name;
         const stationUrl = firstStation.url_resolved;
         setStationName(name);
-        setStationuRL(stationUrl);
+        setStationUrl(stationUrl);
         setLoading(false);
       } catch (error) {
         if (error instanceof Error) {
@@ -97,7 +97,7 @@ export const MusicPlayer = () => {
           </div>
 
           <section>
-            <audio ref={audioRef} src={stationUrl} autoPlay></audio>
+            <audio ref={audioRef} src={stationUrl}></audio>
           </section>
 
           <section>
