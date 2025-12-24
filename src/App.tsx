@@ -14,7 +14,6 @@ export const App = () => {
       clearInterval(intervalId);
     };
   }, []);
-  // 30 * 60 * 1000
   const imagePath = `/lofi-${currentImageIndex + 1}.jpg`;
 
   return (
@@ -28,4 +27,3 @@ export const App = () => {
 };
 
 export default App;
-// setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 10);
