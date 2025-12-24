@@ -8,8 +8,8 @@ export const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 10);
-    }, 5000);
+      setCurrentImageIndex(() => Math.floor(Math.random() * 10));
+    }, 30 * 60 * 1000);
     return () => {
       clearInterval(intervalId);
     };
@@ -18,12 +18,14 @@ export const App = () => {
   const imagePath = `/lofi-${currentImageIndex + 1}.jpg`;
 
   return (
-    <div>
+    <div className="w-full">
       <BackgroundImage imagePath={imagePath} />
       <Header />
+
       <MusicPlayer />
     </div>
   );
 };
 
 export default App;
+// setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % 10);

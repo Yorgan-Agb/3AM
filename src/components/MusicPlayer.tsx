@@ -64,16 +64,14 @@ export const MusicPlayer = () => {
   }, []);
 
   return (
-    <section className="fixed bottom-20 z-10 w-full flex flex-row-reverse p-4 gap-4">
+    <section className="fixed bottom-0 z-10 w-full flex flex-row-reverse p-4 gap-4">
       {loading ? (
-        <p className="text-2xl text-gray-700  font-lofi hover:text-yellow-200/40">
-          Chargement de la station
+        <p className="text-xl text-green-100/70 font-lofi ">
+          Chargement de la station...
         </p>
       ) : message !== "" ? (
         <section>
-          <p className="text-xl text-gray-200/80 font-bold font-lofi hover:text-yellow-200/40">
-            {message}
-          </p>
+          <p className="text-xl text-green-100/70  font-lofi ">{message}</p>
         </section>
       ) : (
         <div className="flex flex-col items-center">
