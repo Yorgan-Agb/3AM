@@ -8,7 +8,7 @@ export const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentImageIndex(() => Math.floor(Math.random() * 10));
+      setCurrentImageIndex(() => Math.floor(Math.random() * 13));
     }, 20 * 60 * 1000);
     return () => {
       clearInterval(intervalId);

@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 export const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number[]>([0]);
+  const [volume, setVolume] = useState<number[]>([30]);
   const [stationName, setStationName] = useState<string>("");
   const [stationUrl, setStationUrl] = useState<string>("");
   const [message, setMessage] = useState<string>("");
