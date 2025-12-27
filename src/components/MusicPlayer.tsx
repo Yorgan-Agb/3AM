@@ -32,7 +32,7 @@ export const MusicPlayer = () => {
     const fetchMusic = async () => {
       try {
         const httpResponse = await fetch(
-          "https://de1.api.radio-browser.info/json/stations/bytagexact/lofi"
+          "https://de2.api.radio-browser.info/json/stations/bytagexact/lofi"
         );
         if (!httpResponse.ok) {
           throw new Error("Erreur lors du chargement de la station");
