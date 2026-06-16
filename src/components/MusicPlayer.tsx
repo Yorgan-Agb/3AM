@@ -3,6 +3,7 @@ import { LuPlay, LuPause } from "react-icons/lu";
 import { Slider } from "./ui/Slider";
 import { StationName } from "./StationName";
 import { useRef } from "react";
+import type { Station } from "../@types";
 
 export const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -29,36 +30,32 @@ export const MusicPlayer = () => {
   };
 
   useEffect(() => {
+    const mirrors = [
+      "https://de1.api.radio-browser.info",
+      "https://de2.api.radio-browser.info",
+      "https://all.api.radio-browser.info",
+    ];
+
     const fetchMusic = async () => {
-      try {
-        const httpResponse = await fetch(
-          "https://de2.api.radio-browser.info/json/stations/bytagexact/lofi"
-        );
-        if (!httpResponse.ok) {
-          throw new Error("Erreur lors du chargement de la station");
+      for (const mirror of mirrors) {
+        try {
+          const httpResponse = await fetch(
+            `${mirror}/json/stations/bytagexact/lofi`,
+          );
+          if (!httpResponse.ok) continue;
+          const data: Station[] = await httpResponse.json();
+          const station = data.find((s) => s.lastcheckok === 1) ?? data[0];
+          if (!station) continue;
+          setStationName(station.name);
+          setStationUrl(station.url_resolved);
+          setLoading(false);
+          return;
+        } catch {
+          // try the next mirror
         }
-        const data = await httpResponse.json();
-        if (!data || data.length === 0) {
-          throw new Error("Aucune station disponible");
-        }
-        const firstStation = data[2];
-        const name = firstStation.name;
-        const stationUrl = firstStation.url_resolved;
-        setStationName(name);
-        setStationUrl(stationUrl);
-        setLoading(false);
-      } catch (error) {
-        if (error instanceof Error) {
-          if (error.message === "Failed to fetch") {
-            setMessage(
-              "Impossible de se connecter à la radio, rechargez la page"
-            );
-          }
-        } else {
-          setMessage("Une erreur est survenue");
-        }
-        setLoading(false);
       }
+      setMessage("Impossible de se connecter a la radio, rechargez la page");
+      setLoading(false);
     };
     fetchMusic();
   }, []);
