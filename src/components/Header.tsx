@@ -1,4 +1,4 @@
-import { LuGithub, LuLinkedin, LuEarth } from "react-icons/lu";
+import { LuEarth } from "react-icons/lu";
 
 export const Header = () => {
   return (
