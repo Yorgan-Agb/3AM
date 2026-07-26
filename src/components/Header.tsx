@@ -12,20 +12,6 @@ export const Header = () => {
         >
           <LuEarth className="text-gray-700/40 hover:text-green-100/70 text-4xl" />
         </a>
-        <a
-          href="https://www.linkedin.com/in/yorgan-agblemagnon/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <LuLinkedin className="text-gray-700/40 hover:text-green-100/70 text-4xl" />
-        </a>
-        <a
-          href="https://github.com/Yorgan-Agb"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <LuGithub className="text-gray-700/40 hover:text-green-100/70 text-4xl" />
-        </a>
       </nav>
     </header>
   );
